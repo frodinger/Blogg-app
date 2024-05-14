@@ -8,12 +8,13 @@ const Navigation = () => {
   return (
     <nav>
       <ul>
+        <h1>Blogg</h1>
         <li><Link to="/">Home</Link></li>
       </ul>
       <div>
         {user ? (
           <>
-            <span>Logged in as: {user.name}</span>
+            <span>{user.name}</span>
             <button onClick={logout}>Logout</button>
           </>
         ) : (

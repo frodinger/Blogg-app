@@ -37,16 +37,42 @@ export const UserProvider = ({ children }) => {
 };
 
 export const BlogProvider = ({ children }) => {
-  const [blogs, setBlogs] = useState(() => loadFromLocalStorage('blogs', [
-    { id: 1, title: 'Sample Post', author: 'Jane Doe', text: 'This is a sample post.' }
-  ]));
+  const initialBlogs = [
+    { id: 1, title: 'Första inlägget', author: 'Jane Doe', text: 'Detta är mitt första inlägg.' },
+    { id: 2, title: 'Andra inlägget', author: 'Jane Doe', text: 'Detta är mitt andra inlägg.' },
+    { id: 3, title: 'Tredje inlägget', author: 'Alice Smith', text: 'Detta är mitt tredje inlägg.' }
+  ];
+
+  const [blogs, setBlogs] = useState(() => {
+    const savedBlogs = loadFromLocalStorage('blogs', initialBlogs);
+    console.log('Loaded blogs:', savedBlogs);
+    return savedBlogs;
+  });
 
   useEffect(() => {
     saveToLocalStorage('blogs', blogs);
   }, [blogs]);
 
+  const addBlog = (title, text) => {
+    const newBlog = {
+      id: blogs.length ? blogs[blogs.length - 1].id + 1 : 1,
+      title,
+      author: 'Blogger', // Hardcoded for simplicity, assuming logged-in user
+      text
+    };
+    setBlogs([...blogs, newBlog]);
+  };
+
+  const updateBlog = (id, updatedBlog) => {
+    setBlogs(blogs.map(blog => (blog.id === id ? { ...blog, ...updatedBlog } : blog)));
+  };
+
+  const deleteBlog = (id) => {
+    setBlogs(blogs.filter(blog => blog.id !== id));
+  };
+
   return (
-    <BlogContext.Provider value={{ blogs, setBlogs }}>
+    <BlogContext.Provider value={{ blogs, addBlog, updateBlog, deleteBlog }}>
       {children}
     </BlogContext.Provider>
   );

@@ -8,6 +8,8 @@ const HomePage = () => {
   const { blogs } = useBlog();
   const { user } = useUser(); 
 
+  console.log('blogs', blogs);
+
   return (
     <div>
       {user ? (
@@ -16,11 +18,11 @@ const HomePage = () => {
           <MyPosts />
         </div>
       ) : (
-        <p>Logga in för att skapa inlägg</p> // Annars visa ett meddelande
+        <p>Logga in för att skapa inlägg</p>
       )}
-      <h1>Blog Posts</h1>
-      {blogs.map((blog) => (
-        <BlogPost key={blog.id} blog={blog} />
+      <h1>Blogginlägg</h1>
+      {blogs.map((blog, index) => (
+        <BlogPost key={index} blog={blog} />
       ))}
     </div>
   );

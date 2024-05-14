@@ -10,17 +10,14 @@ const App = () => {
   const { user } = useUser();
 
   return (
-    <UserProvider>
-      <BlogProvider>
-          <div>
-            <Navigation />
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              {user && <Route path="/addpost" element={<AddPostPage />} />} {/* Endast synlig om användaren är inloggad */}
-            </Routes>
-          </div>
-        </BlogProvider>
-      </UserProvider>
+    <>
+    <Navigation />
+    <Routes>
+    <Route path="/" element={<HomePage />} />
+              
+    </Routes>
+    
+    </>
   );
 };
 

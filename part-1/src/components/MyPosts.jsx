@@ -6,14 +6,19 @@ const MyPosts = () => {
   const { blogs } = useBlog();
   const { user } = useUser();
 
+  // Filtrera användarens inlägg
   const myPosts = blogs.filter(blog => blog.author === user.name);
 
   return (
     <div>
-      <h1>My Posts</h1>
-      {myPosts.map((blog) => (
-        <BlogPost key={blog.id} blog={blog} />
-      ))}
+      <h2>Mina Blogginlägg</h2>
+      {myPosts.length > 0 ? (
+        myPosts.map((blog, index) => (
+          <BlogPost key={index} blog={blog} />
+        ))
+      ) : (
+        <p>Du har inte skapat några blogginlägg än</p>
+      )}
     </div>
   );
 };
