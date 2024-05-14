@@ -1,25 +1,40 @@
-import Header from "./components/Header";
-import Home from "./pages/Home";
-import AddPost from "./components/AddPost";
-import EditPost from "./components/EditPost";
-import PostDetail from "./components/PostDetail";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './index.css';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useUser } from './context';
+import { UserProvider, BlogProvider } from './context';
+import Navigation from './components/Navigation';
+import HomePage from './pages/HomePage';
+import AddPost from './components/AddPost';
 
-function App() {
+const App = () => {
+  const { user } = useUser();
 
   return (
-    <BrowserRouter>
-    <Header />
-    
-    <Routes>
-        <Route exact path="/" component={Home} />
-        <Route path="/add" component={AddPost} />
-        <Route path="/edit/:id" component={EditPost} />
-        <Route path="/post/:id" component={PostDetail} />
-      </Routes>
-  </BrowserRouter>
+    <UserProvider>
+      <BlogProvider>
+          <div>
+            <Navigation />
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              {user && <Route path="/addpost" element={<AddPostPage />} />} {/* Endast synlig om användaren är inloggad */}
+            </Routes>
+          </div>
+        </BlogProvider>
+      </UserProvider>
   );
-}
+};
 
-export default App
+const AddPostPage = () => {
+  const { user } = useUser();
+
+  // Kontrollera om användaren är inloggad
+  if (!user) {
+    return <p>Logga in för att skapa inlägg</p>;
+  } else {
+    // Om användaren är inloggad, rendera "AddPost"-komponenten
+    return <AddPost />;
+  }
+
+};
+
+export default App;
