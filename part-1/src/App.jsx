@@ -1,10 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useUser } from './context';
-import { UserProvider, BlogProvider } from './context';
 import Navigation from './components/Navigation';
 import HomePage from './pages/HomePage';
-import AddPost from './components/AddPost';
+import AboutPage from './pages/AboutPage';
 
 const App = () => {
   const { user } = useUser();
@@ -13,25 +12,12 @@ const App = () => {
     <>
     <Navigation />
     <Routes>
-    <Route path="/" element={<HomePage />} />
-              
+      <Route path="/" element={<HomePage />} />
+      <Route path="/about" element={<AboutPage />} />        
     </Routes>
     
     </>
   );
-};
-
-const AddPostPage = () => {
-  const { user } = useUser();
-
-  // Kontrollera om användaren är inloggad
-  if (!user) {
-    return <p>Logga in för att skapa inlägg</p>;
-  } else {
-    // Om användaren är inloggad, rendera "AddPost"-komponenten
-    return <AddPost />;
-  }
-
 };
 
 export default App;

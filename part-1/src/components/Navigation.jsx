@@ -9,7 +9,8 @@ const Navigation = () => {
     <nav>
       <ul>
         <h1>Blogg</h1>
-        <li><Link to="/">Home</Link></li>
+        <li><Link to="/">Hem</Link></li>
+        <li><Link to="/about">Om Blogg</Link></li>
       </ul>
       <div>
         {user ? (
