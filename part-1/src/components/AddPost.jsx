@@ -1,41 +1,51 @@
 import React, { useState } from 'react';
-import { useBlog } from '../context';
+import { useBlog, useUser } from '../context';
 
 const AddPost = () => {
   const { addBlog } = useBlog();
+  const { user } = useUser();
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
-  const [category, setCategory] = useState('Kategori 1'); // Default category
+  const [category, setCategory] = useState('Kategori 1');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (title && text) {
-      addBlog(title, text, category);
-      setTitle('');
-      setText('');
+    if (user) {
+      addBlog(title, text, category, user);
     }
+    setTitle('');
+    setText('');
+    setCategory('Kategori 1');
   };
+
+  const categories = ['Kategori 1', 'Kategori 2', 'Kategori 3'];
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Lägg till inlägg</h2>
       <input 
         type="text" 
-        placeholder="Titel" 
         value={title} 
         onChange={(e) => setTitle(e.target.value)} 
+        placeholder="Titel"
+        required 
       />
-      <select value={category} onChange={(e) => setCategory(e.target.value)}>
-        <option value="Kategori 1">Kategori 1</option>
-        <option value="Kategori 2">Kategori 2</option>
-        <option value="Kategori 3">Kategori 3</option>
+      <select 
+        value={category} 
+        onChange={(e) => setCategory(e.target.value)}
+      >
+        {categories.map((cat) => (
+          <option key={cat} value={cat}>
+            {cat}
+          </option>
+        ))}
       </select>
       <textarea 
-        placeholder="Text" 
         value={text} 
         onChange={(e) => setText(e.target.value)} 
+        placeholder="Text"
+        required 
       />
-      <button type="submit">Skapa inlägg</button>
+      <button type="submit">Lägg till inlägg</button>
     </form>
   );
 };

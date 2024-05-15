@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { useBlog, useUser } from '../context';
 import BlogPost from '../components/BlogPost';
-import MyPosts from '../components/MyPosts';
 import AddPost from '../components/AddPost';
+import MyPosts from '../components/MyPosts';
 
 const HomePage = () => {
   const { blogs } = useBlog();
   const { user } = useUser();
-  const [selectedCategory, setSelectedCategory] = useState('Alla');
+  const [selectedCategory, setSelectedCategory] = useState('');
 
-  const filteredBlogs = selectedCategory === 'Alla'
-    ? blogs
-    : blogs.filter(blog => blog.category === selectedCategory);
+  const categories = ['Kategori 1', 'Kategori 2', 'Kategori 3'];
+
+  const filteredBlogs = blogs.filter((blog) => 
+    selectedCategory ? blog.category === selectedCategory : true
+  );
 
   return (
     <div>
@@ -25,12 +27,14 @@ const HomePage = () => {
       )}
       <h1>Blogginlägg</h1>
       <div>
-        <button onClick={() => setSelectedCategory('Alla')}>Alla</button>
-        <button onClick={() => setSelectedCategory('Kategori 1')}>Kategori 1</button>
-        <button onClick={() => setSelectedCategory('Kategori 2')}>Kategori 2</button>
-        <button onClick={() => setSelectedCategory('Kategori 3')}>Kategori 3</button>
+        <button onClick={() => setSelectedCategory('')}>Alla</button>
+        {categories.map((cat) => (
+          <button key={cat} onClick={() => setSelectedCategory(cat)}>
+            {cat}
+          </button>
+        ))}
       </div>
-      {filteredBlogs.map((blog) => ( // Remove index from key
+      {filteredBlogs.map((blog) => (
         <BlogPost key={blog.id} blog={blog} />
       ))}
     </div>
