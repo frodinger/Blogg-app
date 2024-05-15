@@ -7,9 +7,23 @@ export const useUser = () => useContext(UserContext);
 export const useBlog = () => useContext(BlogContext);
 
 const loadFromLocalStorage = (key, defaultValue) => {
-  const data = localStorage.getItem(key);
-  return data ? JSON.parse(data) : defaultValue;
-};
+    const data = localStorage.getItem(key);
+    try {
+      if (data) {
+        const parsedData = JSON.parse(data);
+        if (Array.isArray(parsedData)) {
+          // Kontrollera om kategorin saknas i fördefinierade blogginlägg
+          const fixedData = parsedData.map(blog => ({ ...blog, category: blog.category || 'Okategoriserad' }));
+          return fixedData;
+        } else {
+          console.error(`Data in localStorage for key '${key}' is not an array`);
+        }
+      }
+    } catch (error) {
+      console.error(`Error parsing data from localStorage for key '${key}':`, error);
+    }
+    return defaultValue;
+  };  
 
 const saveToLocalStorage = (key, data) => {
   localStorage.setItem(key, JSON.stringify(data));
@@ -38,9 +52,9 @@ export const UserProvider = ({ children }) => {
 
 export const BlogProvider = ({ children }) => {
   const initialBlogs = [
-    { id: 1, title: 'Första inlägget', author: 'Jane Doe', text: 'Detta är mitt första inlägg.' },
-    { id: 2, title: 'Andra inlägget', author: 'Jane Doe', text: 'Detta är mitt andra inlägg.' },
-    { id: 3, title: 'Tredje inlägget', author: 'Alice Smith', text: 'Detta är mitt tredje inlägg.' }
+    { id: 1, title: 'Trender inom Frontend-utveckling 2024', author: 'Jane Doe', text: 'Frontend-utveckling fortsätter att utvecklas snabbt, och 2024 ser ut att bli ett spännande år med flera nya trender. Här är några av de mest framstående: ...', category: 'Kategori 1' },
+    { id: 2, title: 'Användarcentrerad Design för Bättre Upplevelser', author: 'Jane Doe', text: 'Att skapa en fantastisk användarupplevelse (UX) handlar om att sätta användaren i centrum för designprocessen. Här är några nyckelprinciper för användarcentrerad design: ...', category: 'Kategori 2' },
+    { id: 3, title: 'Fördelar med React i Moderna Webbapplikationer', author: 'Alice Smith', text: 'React är ett av de mest populära JavaScript-biblioteken för att bygga användargränssnitt, och det är inte svårt att förstå varför. Här är några av de främsta fördelarna med att använda React: ...', category: 'Kategori 3' }
   ];
 
   const [blogs, setBlogs] = useState(() => {
@@ -53,12 +67,13 @@ export const BlogProvider = ({ children }) => {
     saveToLocalStorage('blogs', blogs);
   }, [blogs]);
 
-  const addBlog = (title, text) => {
+  const addBlog = (title, text, category) => {
     const newBlog = {
       id: blogs.length ? blogs[blogs.length - 1].id + 1 : 1,
       title,
       author: 'Blogger', // Hardcoded for simplicity, assuming logged-in user
-      text
+      text,
+      category
     };
     setBlogs([...blogs, newBlog]);
   };

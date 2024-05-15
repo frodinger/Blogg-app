@@ -15,10 +15,10 @@ const Navigation = () => {
         {user ? (
           <>
             <span>{user.name}</span>
-            <button onClick={logout}>Logout</button>
+            <button onClick={logout}>Logga ut</button>
           </>
         ) : (
-          <button onClick={login}>Login</button>
+          <button onClick={login}>Logga in</button>
         )}
       </div>
     </nav>
