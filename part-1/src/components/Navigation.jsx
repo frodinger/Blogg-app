@@ -7,10 +7,10 @@ const Navigation = () => {
 
   return (
     <nav>
+        <li className='list-none text-green-800'><Link to="/">Hemma Glädje</Link></li>
       <ul>
-        <h1>Blogg</h1>
         <li><Link to="/">Hem</Link></li>
-        <li><Link to="/about">Om Blogg</Link></li>
+        <li><Link to="/blogg">Blogg</Link></li>
       </ul>
       <div>
         {user ? (

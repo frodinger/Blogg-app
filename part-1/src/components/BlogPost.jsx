@@ -18,7 +18,7 @@ const BlogPost = ({ blog }) => {
     deleteBlog(blog.id);
   };
 
-  const categories = ['Kategori 1', 'Kategori 2', 'Kategori 3'];
+  const categories = ['Trädgård', 'Renovering', 'Inredning'];
 
   return (
     <div>
@@ -48,10 +48,10 @@ const BlogPost = ({ blog }) => {
         </div>
       ) : (
         <div>
-          <h2>{blog.title}</h2>
+          <h2 className='font-serif text-2xl'>{blog.title}</h2>
           <p>{blog.category}</p>
           <p>Av {blog.author}</p>
-          <p>{blog.text}</p>
+          <p className='font-sans text-base/6'>{blog.text}</p>
           {user && user.name === blog.author && (
             <div>
               <button onClick={() => setIsEditing(true)}>Redigera</button>

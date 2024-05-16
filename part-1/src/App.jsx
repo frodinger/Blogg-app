@@ -1,9 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useUser } from './context';
 import Navigation from './components/Navigation';
+import BlogPage from './pages/BlogPage';
 import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
 
 const App = () => {
   const { user } = useUser();
@@ -12,8 +12,8 @@ const App = () => {
     <>
     <Navigation />
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/about" element={<AboutPage />} />        
+      <Route path="/blogg" element={<BlogPage />} />
+      <Route path="/" element={<HomePage />} />        
     </Routes>
     
     </>

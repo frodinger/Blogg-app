@@ -6,7 +6,7 @@ const AddPost = () => {
   const { user } = useUser();
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
-  const [category, setCategory] = useState('Kategori 1');
+  const [category, setCategory] = useState('Trädgård');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,10 +15,10 @@ const AddPost = () => {
     }
     setTitle('');
     setText('');
-    setCategory('Kategori 1');
+    setCategory('Trädgård');
   };
 
-  const categories = ['Kategori 1', 'Kategori 2', 'Kategori 3'];
+  const categories = ['Trädgård', 'Renovering', 'Inredning'];
 
   return (
     <form onSubmit={handleSubmit}>
