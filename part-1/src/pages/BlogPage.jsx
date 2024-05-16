@@ -16,7 +16,7 @@ const BlogPage = () => {
   );
 
   return (
-    <div>
+    <section>
       {user ? (
         <div>
           <AddPost />
@@ -34,10 +34,12 @@ const BlogPage = () => {
           </button>
         ))}
       </div>
+      <div className='flex flex-wrap'>
       {filteredBlogs.map((blog) => (
         <BlogPost key={blog.id} blog={blog} />
       ))}
-    </div>
+      </div>
+    </section>
   );
 };
 

@@ -47,7 +47,7 @@ const BlogPost = ({ blog }) => {
           <button onClick={() => setIsEditing(false)}>Avbryt</button>
         </div>
       ) : (
-        <div>
+        <div className='max-w-lg py-3 px-3 bg-white'>
           <h2 className='font-serif text-2xl'>{blog.title}</h2>
           <p>{blog.category}</p>
           <p>Av {blog.author}</p>

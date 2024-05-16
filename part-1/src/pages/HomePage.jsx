@@ -3,9 +3,9 @@ import React from 'react';
 const HomePage = () => {
 
   return (
-    <div>
+    <section>
       <h1>Välkommen till Hemma Glädje!</h1>
-    </div>
+    </section>
   );
 };
 

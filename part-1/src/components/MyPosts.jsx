@@ -12,6 +12,7 @@ const MyPosts = () => {
   return (
     <div>
       <h2>Mina Blogginlägg</h2>
+      <div className='flex flex-wrap'>
       {myPosts.length > 0 ? (
         myPosts.map((blog, index) => (
           <BlogPost key={index} blog={blog} />
@@ -19,6 +20,7 @@ const MyPosts = () => {
       ) : (
         <p>Du har inte skapat några blogginlägg än</p>
       )}
+      </div>
     </div>
   );
 };

@@ -3,11 +3,15 @@
 @import 'tailwindcss/utilities';
 
 body {
-  @apply bg-lime-50 px-10 max-w-screen-2xl self-center;
+  @apply bg-lime-50;
 }
 
 nav {
   @apply flex flex-row py-2 bg-white justify-between;
+}
+
+nav, section {
+  @apply px-10;
 }
 
 ul li {
@@ -16,6 +20,10 @@ ul li {
 
 ul li:hover {
   @apply text-base font-medium text-lime-700;
+}
+
+button {
+  @apply py-2 px-3 bg-lime-200;
 }
 
 /*
