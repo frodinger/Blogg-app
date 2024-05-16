@@ -2,6 +2,22 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+body {
+  @apply bg-lime-50 px-10 max-w-screen-2xl self-center;
+}
+
+nav {
+  @apply flex flex-row py-2 bg-white justify-between;
+}
+
+ul li {
+  @apply text-base font-normal;
+}
+
+ul li:hover {
+  @apply text-base font-medium text-lime-700;
+}
+
 /*
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
