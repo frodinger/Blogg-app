@@ -69,7 +69,7 @@ const BlogPost = ({ blog }) => {
         </div>
       ) : (
         <div>
-          <p className="text-sm font-medium text-lime-800">{blog.category}</p>
+          <p className="text-base font-medium text-lime-800">{blog.category}</p>
           <h2 className="font-serif text-2xl mt-2">{blog.title}</h2>
           <p className="text-sm text-gray-600">Av {blog.author}</p>
           <p className="font-sans text-base mt-2 overflow-y-auto max-h-[400px] overflow-x-hidden break-words">{blog.text}</p>
