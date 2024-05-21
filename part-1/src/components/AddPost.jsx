@@ -22,8 +22,8 @@ const AddPost = () => {
 
   return (
     <div>
-      <h2 className="text-3xl font-serif font-medium mb-4">Lägg till ett nytt inlägg</h2>
-    <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+      <h2 className="text-3xl font-serif font-medium mb-4">Skapa ett nytt inlägg</h2>
+    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
     <form onSubmit={handleSubmit} className="max-w-lg p-6 bg-white shadow-md rounded-lg">
       <div className="mb-4">
         <label htmlFor="title" className="block text-gray-700 font-medium mb-2">Titel</label>
@@ -63,7 +63,7 @@ const AddPost = () => {
           className="w-full p-2 border rounded"
         />
       </div>
-      <button type="submit" className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">Lägg till inlägg</button>
+      <button type="submit" className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">Skapa inlägg</button>
     </form>
     </div>
     </div>

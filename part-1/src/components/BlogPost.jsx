@@ -63,8 +63,8 @@ const BlogPost = ({ blog }) => {
         </div>
       ) : (
         <div>
-          <h2 className="font-serif text-2xl">{blog.title}</h2>
           <p className="text-sm text-gray-600">{blog.category}</p>
+          <h2 className="font-serif text-2xl mt-2">{blog.title}</h2>
           <p className="text-sm text-gray-600">Av {blog.author}</p>
           <p className="font-sans text-base mt-2 overflow-y-auto max-h-[300px] overflow-x-hidden break-words">{blog.text}</p>
           {user && user.name === blog.author && (
@@ -73,11 +73,12 @@ const BlogPost = ({ blog }) => {
               <button onClick={handleDelete} className="bg-red-500 text-white py-1 px-3 rounded">Radera</button>
             </div>
           )}
-          <div className="mt-6">
-            <h3 className="text-lg font-semibold mb-2">Kommentarer:</h3>
+          <div className="mt-4">
+            <h3 className="text-lg font-medium mb-1">Kommentarer:</h3>
+            <div className='overflow-y-auto max-h-[100px] overflow-x-hidden break-words'>  
             {blog.comments && blog.comments.length > 0 ? (
               blog.comments.map((comment, index) => (
-                <div key={index} className="comment mb-4 p-2 border-b border-gray-200">
+                <div key={index} className="comment py-2 border-b border-gray-200">
                   <p className="font-bold text-sm">{comment.author}:</p>
                   <p className="text-sm">{comment.text}</p>
                 </div>
@@ -85,6 +86,7 @@ const BlogPost = ({ blog }) => {
             ) : (
               <p className="text-sm text-gray-500">Inga kommentarer ännu.</p>
             )}
+            </div>
             {user && (
               <div className="mt-4">
                 <textarea 

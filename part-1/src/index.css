@@ -5,3 +5,12 @@
 body {
   @apply py-10 bg-neutral-50;
 }
+
+.nav-link {
+  @apply relative;
+}
+
+.nav-link.active::after {
+  @apply block absolute bottom-0 left-0 w-full h-0.5 bg-white;
+  content: '';
+}

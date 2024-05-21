@@ -14,7 +14,7 @@ const Navigation = () => {
           <li>
             <Link
               to="/"
-              className={`hover:text-gray-300 ${location.pathname === '/' ? 'text-gray-300' : ''}`}
+              className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
             >
               Hem
             </Link>
@@ -22,7 +22,7 @@ const Navigation = () => {
           <li>
             <Link
               to="/blogg"
-              className={`hover:text-gray-300 ${location.pathname === '/blogg' ? 'text-gray-300' : ''}`}
+              className={`nav-link ${location.pathname === '/blogg' ? 'active' : ''}`}
             >
               Blogg
             </Link>
