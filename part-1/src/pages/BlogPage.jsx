@@ -1,15 +1,15 @@
+// src/pages/BlogPage.js
 import React, { useState } from 'react';
 import { useBlog, useUser } from '../context';
 import BlogPost from '../components/BlogPost';
 import AddPost from '../components/AddPost';
 import MyPosts from '../components/MyPosts';
+import { categories } from '../components/Categories'; // Importera categories från en separat fil
 
 const BlogPage = () => {
   const { blogs } = useBlog();
   const { user } = useUser();
   const [selectedCategory, setSelectedCategory] = useState('');
-
-  const categories = ['Trädgård', 'Renovering', 'Inredning'];
 
   const filteredBlogs = blogs.filter((blog) =>
     selectedCategory ? blog.category === selectedCategory : true
