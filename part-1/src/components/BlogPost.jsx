@@ -72,7 +72,7 @@ const BlogPost = ({ blog }) => {
           <p className="text-sm font-medium text-lime-800">{blog.category}</p>
           <h2 className="font-serif text-2xl mt-2">{blog.title}</h2>
           <p className="text-sm text-gray-600">Av {blog.author}</p>
-          <p className="font-sans text-base mt-2 overflow-y-auto max-h-[300px] overflow-x-hidden break-words">{blog.text}</p>
+          <p className="font-sans text-base mt-2 overflow-y-auto max-h-[400px] overflow-x-hidden break-words">{blog.text}</p>
           {user && user.name === blog.author && (
             <div className="mt-4">
               <button onClick={() => setIsEditing(true)} className="bg-lime-700 hover:bg-lime-900 text-white py-1 px-3 rounded mr-2">Redigera</button>
