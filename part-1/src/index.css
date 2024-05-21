@@ -3,7 +3,7 @@
 @import 'tailwindcss/utilities';
 
 body {
-  @apply py-10 bg-neutral-50;
+  @apply bg-stone-100;
 }
 
 .nav-link {
@@ -11,6 +11,10 @@ body {
 }
 
 .nav-link.active::after {
-  @apply block absolute bottom-0 left-0 w-full h-0.5 bg-white;
+  @apply block absolute bottom-0 left-0 w-full h-0.5 bg-black;
   content: '';
+}
+
+.nav-link.active::after:hover {
+  @apply bg-lime-800;
 }

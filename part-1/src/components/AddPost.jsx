@@ -63,7 +63,7 @@ const AddPost = () => {
           className="w-full p-2 border rounded"
         />
       </div>
-      <button type="submit" className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">Skapa inlägg</button>
+      <button type="submit" className="w-full bg-lime-700 text-white py-2 rounded hover:bg-lime-900">Skapa inlägg</button>
     </form>
     </div>
     </div>

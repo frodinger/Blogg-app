@@ -28,8 +28,8 @@ const BlogPage = () => {
       <h1 className="text-3xl font-serif font-medium mt-8 mb-4">Blogginlägg</h1>
       <div className="flex space-x-4 mb-4">
         <button
-          className={`py-2 px-4 rounded-lg ${
-            selectedCategory === '' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-700'
+          className={`py-1 px-3 rounded ${
+            selectedCategory === '' ? 'bg-lime-700 text-white' : 'bg-gray-300 hover:bg-gray-400 text-gray-700 hover:text-gray-900'
           }`}
           onClick={() => setSelectedCategory('')}
         >
@@ -38,8 +38,8 @@ const BlogPage = () => {
         {categories.map((cat) => (
           <button
             key={cat}
-            className={`py-2 px-4 rounded-lg ${
-              selectedCategory === cat ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-700'
+            className={`py-1 px-3 rounded ${
+              selectedCategory === cat ? 'bg-lime-700 text-white' : 'bg-gray-300 hover:bg-gray-400 text-gray-700 hover:text-gray-900'
             }`}
             onClick={() => setSelectedCategory(cat)}
           >

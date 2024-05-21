@@ -35,42 +35,48 @@ const BlogPost = ({ blog }) => {
   return (
     <div className="max-w-lg py-3 px-3 bg-white shadow-md rounded-lg">
       {isEditing ? (
+  <div>
+    <label htmlFor="title" className="block text-sm font-medium text-gray-700">Titel</label>
+    <input 
+      type="text" 
+      id="title"
+      value={title} 
+      onChange={(e) => setTitle(e.target.value)} 
+      className="w-full p-2 border rounded mb-2"
+    />
+    <label htmlFor="category" className="block text-sm font-medium text-gray-700">Kategori</label>
+    <select 
+      id="category"
+      value={category} 
+      onChange={(e) => setCategory(e.target.value)}
+      className="w-full p-2 border rounded mb-2"
+    >
+      {categories.map((cat) => (
+        <option key={cat} value={cat}>
+          {cat}
+        </option>
+      ))}
+    </select>
+    <label htmlFor="text" className="block text-sm font-medium text-gray-700">Text</label>
+    <textarea 
+      id="text"
+      value={text} 
+      onChange={(e) => setText(e.target.value)} 
+      className="w-full p-2 border rounded mb-2 overflow-y-auto"
+    />
+    <button onClick={handleEdit} className="bg-lime-700 hover:bg-lime-900 text-white py-1 px-3 rounded mr-2">Spara</button>
+    <button onClick={() => setIsEditing(false)} className="bg-gray-500 hover:bg-gray-600 text-white py-1 px-3 rounded">Avbryt</button>
+  </div>
+) : (
         <div>
-          <input 
-            type="text" 
-            value={title} 
-            onChange={(e) => setTitle(e.target.value)} 
-            className="w-full p-2 border rounded mb-2"
-          />
-          <select 
-            value={category} 
-            onChange={(e) => setCategory(e.target.value)}
-            className="w-full p-2 border rounded mb-2"
-          >
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
-          <textarea 
-            value={text} 
-            onChange={(e) => setText(e.target.value)} 
-            className="w-full p-2 border rounded mb-2 overflow-y-auto"
-          />
-          <button onClick={handleEdit} className="bg-blue-500 text-white py-1 px-3 rounded mr-2">Spara</button>
-          <button onClick={() => setIsEditing(false)} className="bg-gray-500 text-white py-1 px-3 rounded">Avbryt</button>
-        </div>
-      ) : (
-        <div>
-          <p className="text-sm text-gray-600">{blog.category}</p>
+          <p className="text-sm font-medium text-lime-800">{blog.category}</p>
           <h2 className="font-serif text-2xl mt-2">{blog.title}</h2>
           <p className="text-sm text-gray-600">Av {blog.author}</p>
           <p className="font-sans text-base mt-2 overflow-y-auto max-h-[300px] overflow-x-hidden break-words">{blog.text}</p>
           {user && user.name === blog.author && (
             <div className="mt-4">
-              <button onClick={() => setIsEditing(true)} className="bg-blue-500 text-white py-1 px-3 rounded mr-2">Redigera</button>
-              <button onClick={handleDelete} className="bg-red-500 text-white py-1 px-3 rounded">Radera</button>
+              <button onClick={() => setIsEditing(true)} className="bg-lime-700 hover:bg-lime-900 text-white py-1 px-3 rounded mr-2">Redigera</button>
+              <button onClick={handleDelete} className="bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded">Radera</button>
             </div>
           )}
           <div className="mt-4">
@@ -95,7 +101,7 @@ const BlogPost = ({ blog }) => {
                   placeholder="Skriv en kommentar"
                   className="w-full p-2 border rounded mb-2"
                 />
-                <button onClick={handleAddComment} className="bg-green-500 text-white py-1 px-3 rounded">Lägg till kommentar</button>
+                <button onClick={handleAddComment} className="bg-lime-700 hover:bg-lime-900 text-white py-1 px-3 rounded">Lägg till kommentar</button>
               </div>
             )}
           </div>

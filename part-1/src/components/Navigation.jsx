@@ -7,11 +7,11 @@ const Navigation = () => {
   const location = useLocation();
 
   return (
-    <nav className="bg-gray-800 p-4">
+    <nav className="bg-white p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-white text-lg font-serif font-semibold"><Link to="/">Hemma Glädje</Link></h1>
-        <ul className="flex space-x-4 text-white">
-          <li>
+        <h1 className="text-lime-800 text-lg font-serif font-semibold"><Link to="/">Hemma Glädje</Link></h1>
+        <ul className="flex space-x-4 text-black">
+          <li className='hover:text-lime-800'>
             <Link
               to="/"
               className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
@@ -19,7 +19,7 @@ const Navigation = () => {
               Hem
             </Link>
           </li>
-          <li>
+          <li className='hover:text-lime-800'>
             <Link
               to="/blogg"
               className={`nav-link ${location.pathname === '/blogg' ? 'active' : ''}`}
@@ -31,11 +31,11 @@ const Navigation = () => {
         <div className="flex items-center">
           {user ? (
             <>
-              <span className="text-white mr-4">{user.name}</span>
-              <button onClick={logout} className="bg-red-500 text-white py-1 px-3 rounded">Logga ut</button>
+              <span className="text-black mr-4">{user.name}</span>
+              <button onClick={logout} className="bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded">Logga ut</button>
             </>
           ) : (
-            <button onClick={login} className="bg-blue-500 text-white py-1 px-3 rounded">Logga in</button>
+            <button onClick={login} className="bg-lime-700 hover:bg-lime-900 text-white py-1 px-3 rounded">Logga in</button>
           )}
         </div>
       </div>
