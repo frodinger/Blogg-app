@@ -1,29 +1,44 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useUser } from '../context';
 
 const Navigation = () => {
   const { user, login, logout } = useUser();
+  const location = useLocation();
 
   return (
-    <nav>
-        <li className='list-none text-lime-700 text-lg font-serif font-semibold'><Link to="/">Hemma Glädje</Link></li>
-        <div className='flex flex-row'>
-          <ul className='flex flex-row'>
-            <li><Link to="/">Hem</Link></li>
-            <li><Link to="/blogg">Blogg</Link></li>
-          </ul>
-          <div>
-            {user ? (
+    <nav className="bg-gray-800 p-4">
+      <div className="container mx-auto flex justify-between items-center">
+        <h1 className="text-white text-lg font-serif font-semibold"><Link to="/">Hemma Glädje</Link></h1>
+        <ul className="flex space-x-4 text-white">
+          <li>
+            <Link
+              to="/"
+              className={`hover:text-gray-300 ${location.pathname === '/' ? 'text-gray-300' : ''}`}
+            >
+              Hem
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/blogg"
+              className={`hover:text-gray-300 ${location.pathname === '/blogg' ? 'text-gray-300' : ''}`}
+            >
+              Blogg
+            </Link>
+          </li>
+        </ul>
+        <div className="flex items-center">
+          {user ? (
             <>
-            <span>{user.name}</span>
-            <button onClick={logout}>Logga ut</button>
+              <span className="text-white mr-4">{user.name}</span>
+              <button onClick={logout} className="bg-red-500 text-white py-1 px-3 rounded">Logga ut</button>
             </>
-            ) : (
-            <button onClick={login}>Logga in</button>
-            )}
-          </div>
+          ) : (
+            <button onClick={login} className="bg-blue-500 text-white py-1 px-3 rounded">Logga in</button>
+          )}
         </div>
+      </div>
     </nav>
   );
 };
