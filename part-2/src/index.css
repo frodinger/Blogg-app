@@ -1,0 +1,20 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+body {
+  @apply bg-stone-100;
+}
+
+.nav-link {
+  @apply relative;
+}
+
+.nav-link.active::after {
+  @apply block absolute bottom-0 left-0 w-full h-0.5 bg-black;
+  content: '';
+}
+
+.nav-link.active::after:hover {
+  @apply bg-lime-800;
+}

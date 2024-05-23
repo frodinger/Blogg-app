@@ -1,0 +1,1 @@
+export const categories = ['Trädgård', 'Renovering', 'Inredning'];
