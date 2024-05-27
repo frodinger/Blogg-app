@@ -1,5 +1,6 @@
 import React from 'react';
-import { useBlog, useUser } from '../context';
+import { useUser } from '../context/UserContext';
+import { useBlog } from '../context/BlogContext';
 import BlogPost from './BlogPost';
 
 const MyPosts = () => {

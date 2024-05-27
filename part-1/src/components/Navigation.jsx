@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useUser } from '../context';
+import { useUser } from '../context/UserContext';
 
 const Navigation = () => {
   const { user, login, logout } = useUser();

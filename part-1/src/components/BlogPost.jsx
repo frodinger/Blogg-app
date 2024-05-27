@@ -1,6 +1,7 @@
 // src/components/BlogPost.js
 import React, { useState } from 'react';
-import { useBlog, useUser } from '../context';
+import { useUser } from '../context/UserContext';
+import { useBlog } from '../context/BlogContext';
 import { categories } from './Categories';
 
 const BlogPost = ({ blog }) => {

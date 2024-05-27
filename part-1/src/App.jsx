@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useUser } from './context';
+import { useUser } from '../context/UserContext';
 import Navigation from './components/Navigation';
 import BlogPage from './pages/BlogPage';
 import HomePage from './pages/HomePage';

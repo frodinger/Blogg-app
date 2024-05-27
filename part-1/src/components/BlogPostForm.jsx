@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useBlog, useUser } from '../context';
+import { useUser } from '../context/UserContext';
+import { useBlog } from '../context/BlogContext';
 
 const BlogPostForm = () => {
   const { blogs, setBlogs } = useBlog();

@@ -1,6 +1,7 @@
 // src/pages/BlogPage.js
 import React, { useState } from 'react';
-import { useBlog, useUser } from '../context';
+import { useUser } from '../context/UserContext';
+import { useBlog } from '../context/BlogContext';
 import BlogPost from '../components/BlogPost';
 import AddPost from '../components/AddPost';
 import MyPosts from '../components/MyPosts';
