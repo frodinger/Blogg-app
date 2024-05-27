@@ -28,6 +28,14 @@ const Navigation = () => {
               Blogg
             </Link>
           </li>
+          <li className='hover:text-lime-800'>
+            <Link
+              to="/minsida"
+              className={`nav-link ${location.pathname === '/minsida' ? 'active' : ''}`}
+            >
+              Min Sida
+            </Link>
+          </li>
         </ul>
         <div className="flex items-center">
           {userLoggedIn ? (

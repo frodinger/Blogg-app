@@ -16,15 +16,7 @@ const BlogPage = () => {
   );
 
   return (
-    <section className="py-8 px-4">
-      {currentUser ? (
-        <div>
-          <AddPost />
-          <MyPosts />
-        </div>
-      ) : (
-        <p className="text-gray-600">Logga in för att skapa inlägg</p>
-      )}
+    <section className="py-4 px-4">
       <h1 className="text-3xl font-serif font-medium mt-8 mb-4">Blogginlägg</h1>
       <div className="flex space-x-4 mb-4">
         <button

@@ -69,7 +69,7 @@ const LoginComponent = () => {
             <button
               type="submit"
               disabled={isSigningIn}
-              className={`w-full px-4 py-2 text-white font-medium rounded-lg ${
+              className={`w-full px-4 py-2 text-white font-medium rounded ${
                 isSigningIn
                   ? "bg-gray-300 cursor-not-allowed"
                   : "bg-lime-700 hover:bg-lime-900 transition duration-300"
