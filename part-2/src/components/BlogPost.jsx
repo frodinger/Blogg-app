@@ -1,11 +1,10 @@
-// src/components/BlogPost.js
-import React, { useState } from 'react';
-import { useUser } from '../context/UserContext';
+import React, { useState, useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 import { useBlog } from '../context/BlogContext';
 import { categories } from './Categories';
 
 const BlogPost = ({ blog }) => {
-  const { user } = useUser();
+  const { currentUser } = useContext(AuthContext);
   const { updateBlog, deleteBlog, addComment } = useBlog();
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(blog.title);
@@ -25,7 +24,7 @@ const BlogPost = ({ blog }) => {
   const handleAddComment = () => {
     if (commentText.trim()) {
       const newComment = {
-        author: user.name,
+        author: currentUser.email,
         text: commentText
       };
       addComment(blog.id, newComment);
@@ -74,7 +73,7 @@ const BlogPost = ({ blog }) => {
           <h2 className="font-serif text-2xl mt-2">{blog.title}</h2>
           <p className="text-sm text-gray-600">Av {blog.author}</p>
           <p className="font-sans text-base mt-2 overflow-y-auto max-h-[400px] overflow-x-hidden break-words">{blog.text}</p>
-          {user && user.name === blog.author && (
+          {currentUser && currentUser.email === blog.author && (
             <div className="mt-4">
               <button onClick={() => setIsEditing(true)} className="bg-lime-700 hover:bg-lime-900 text-white py-1 px-3 rounded mr-2">Redigera</button>
               <button onClick={handleDelete} className="bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded">Radera</button>
@@ -94,7 +93,7 @@ const BlogPost = ({ blog }) => {
                 <p className="text-sm text-gray-500">Inga kommentarer ännu.</p>
               )}
             </div>
-            {user && (
+            {currentUser && (
               <div className="mt-4">
                 <textarea 
                   value={commentText}

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useUser } from '../context/UserContext';
+import { AuthContext } from '../context/AuthContext';
+import { signOutUser } from '../Firebase/authFunctions';
 
 const Navigation = () => {
-  const { user, login, logout } = useUser();
+  const { currentUser, userLoggedIn } = useContext(AuthContext);
   const location = useLocation();
 
   return (
@@ -29,13 +30,15 @@ const Navigation = () => {
           </li>
         </ul>
         <div className="flex items-center">
-          {user ? (
+          {userLoggedIn ? (
             <>
-              <span className="text-black mr-4">{user.name}</span>
-              <button onClick={logout} className="bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded">Logga ut</button>
+              <span className="text-black mr-4">{currentUser.email}</span>
+              <button onClick={signOutUser} className="bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded">Logga ut</button>
             </>
           ) : (
-            <button onClick={login} className="bg-lime-700 hover:bg-lime-900 text-white py-1 px-3 rounded">Logga in</button>
+            <Link to="/login">
+            <button className="bg-lime-700 hover:bg-lime-900 text-white py-1 px-3 rounded">Logga in</button>
+            </Link>
           )}
         </div>
       </div>

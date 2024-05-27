@@ -1,16 +1,12 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../Firebase/firebase";
-import React, { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 
 // Skapa en ny kontext
 export const AuthContext = createContext();
 
-export function useAuth() {
-    return useContext(AuthContext);
-  }  
-
 // Skapa en komponent som innehåller state du vill dela
-export const AuthProvider = ({children}) => {
+export const AuthProvider = (props) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -36,7 +32,7 @@ export const AuthProvider = ({children}) => {
 
   return (
     <AuthContext.Provider value={values}>
-      {!loading && children}
+      {!loading && props.children}
     </AuthContext.Provider>
   );
 };

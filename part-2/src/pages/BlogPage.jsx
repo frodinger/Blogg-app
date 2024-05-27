@@ -1,15 +1,14 @@
-// src/pages/BlogPage.js
-import React, { useState } from 'react';
-import { useUser } from '../context/UserContext';
+import React, { useState, useContext } from 'react';
 import { useBlog } from '../context/BlogContext';
+import { AuthContext  } from '../context/AuthContext';
 import BlogPost from '../components/BlogPost';
 import AddPost from '../components/AddPost';
 import MyPosts from '../components/MyPosts';
-import { categories } from '../components/Categories'; // Importera categories från en separat fil
+import { categories } from '../components/Categories';
 
 const BlogPage = () => {
   const { blogs } = useBlog();
-  const { user } = useUser();
+  const { currentUser } = useContext(AuthContext);
   const [selectedCategory, setSelectedCategory] = useState('');
 
   const filteredBlogs = blogs.filter((blog) =>
@@ -18,7 +17,7 @@ const BlogPage = () => {
 
   return (
     <section className="py-8 px-4">
-      {user ? (
+      {currentUser ? (
         <div>
           <AddPost />
           <MyPosts />

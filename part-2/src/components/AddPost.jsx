@@ -1,24 +1,23 @@
-// src/components/AddPost.js
-import React, { useState } from 'react';
-import { useUser } from '../context/UserContext';
+import React, { useState, useContext } from 'react';
 import { useBlog } from '../context/BlogContext';
+import { AuthContext } from '../context/AuthContext';
 import { categories } from './Categories';
 
 const AddPost = () => {
   const { addBlog } = useBlog();
-  const { user } = useUser();
+  const { currentUser } = useContext(AuthContext);
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
-  const [category, setCategory] = useState(categories[0]); // Default category set to the first element of the array
+  const [category, setCategory] = useState(categories[0]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (user) {
-      addBlog(title, text, category, user);
+    if (currentUser) {
+      addBlog(title, text, category, currentUser);
     }
     setTitle('');
     setText('');
-    setCategory(categories[0]); // Reset category to the default value after submission
+    setCategory(categories[0]);
   };
 
   return (

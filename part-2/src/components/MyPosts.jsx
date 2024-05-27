@@ -1,14 +1,14 @@
-import React from 'react';
-import { useUser } from '../context/UserContext';
+import React, { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 import { useBlog } from '../context/BlogContext';
 import BlogPost from './BlogPost';
 
 const MyPosts = () => {
+  const { currentUser } = useContext(AuthContext);
   const { blogs } = useBlog();
-  const { user } = useUser();
 
   // Filtrera användarens inlägg
-  const myPosts = blogs.filter(blog => blog.author === user.name);
+  const myPosts = blogs.filter(blog => blog.author === currentUser.email);
 
   return (
     <div>

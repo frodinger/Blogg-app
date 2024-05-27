@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom';
-import { UserProvider } from './context/UserContext';
-import { BlogProvider } from './context/BlogContext';
 import './index.css';
+import { BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { BlogProvider } from './context/BlogContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <UserProvider>
+      <AuthProvider>
         <BlogProvider>
           <App />
         </BlogProvider>
-      </UserProvider>
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

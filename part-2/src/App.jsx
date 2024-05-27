@@ -1,24 +1,24 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useUser } from './context/UserContext';
 import Navigation from './components/Navigation';
 import BlogPage from './pages/BlogPage';
 import HomePage from './pages/HomePage';
+import LoginComponent from './components/LoginComponent';
+import RegisterComponent from './components/RegisterComponent';
 
 const App = () => {
-  const { user } = useUser();
 
   return (
     <>
-    <Navigation />
-    <Routes>
-      <Route path="/blogg" element={<BlogPage />} />
-      <Route path="/" element={<HomePage />} />        
-    </Routes>
-    
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<HomePage />} />        
+        <Route path="/blogg" element={<BlogPage />} />
+        <Route path="/login" element={<LoginComponent />} />
+        <Route path="/register" element={<RegisterComponent />} />
+      </Routes>
     </>
   );
 };
 
 export default App;
-
